@@ -1,0 +1,82 @@
+#####     ------ Parameter File -----       ###
+#                                             #  
+#   use:                                      #
+#                                             #
+#     GROUP NAME TYPE VALUE                   #
+#                                             #
+#     where TYPE is:                          #
+#                                             #
+#          I  --> INTEGER,                    #
+#          D  --> FLOAT                       #
+#          S  --> STRING                      #
+#          IV --> INTEGER VECTOR              #
+#          DV --> FLOAT VECTOR                #
+#          SV --> STRING VECTOR               #
+#                                             #
+#     For vectors:  TYPE == vector length     #
+#     Each element is decleared in new line   #
+#                                             #
+###############################################
+
+#--------- PATHS with modules to be used -------#
+#CNTJob PATHS SV 1
+#./../algos/
+
+CNTJob LIBS SV 1
+../lib/libpetAnalysis.so
+
+#--------- DATA -------#
+CNTJob INPUT_DATA SV 1
+prod2.allfaces.pet.root
+
+#------ SAVE EVENTS IN OUTPUT FILE ----------# 
+CNTJob SAVE I 0
+
+#---------- NUMBER OF EVENTS TO ANALYZE ----------#
+CNTJob NEVENTS I 30000
+
+#---------- FIRST EVENT TO ANALYZE ----------#
+CNTJob FEVENT I 0
+
+#---------- Print status messages after NDEBUG events ----------#
+CNTJob NDEBUG I 100
+
+#---------- VERBOSITY LEVEL ----------#
+CNTJob LEVEL I 1
+
+#--------- ALGORITHMS-------#
+CNTJob ALGOS SV 1
+petAnalysis
+
+#--------- INPUT DATA FORMAT -------#
+CNTJob READER S gateReader
+
+#--------- OUPUT DATA FORMAT -------#
+CNTJob WRITER S gateWriter
+
+#------------- log file -------------#
+CNTJob LOG I 1
+CNTJob FLOG S algo_petAnalysis.log
+
+#---------- histogram file ----------#
+CNTJob HISTOS 1
+CNTJob FHISTOS S algo_petAnalysis_histos.root
+
+#---------- histogram file ----------#
+CNTJob TREES 1
+CNTJob FTREES S algo_example_trees.root
+
+#---------- documentation tex file ----------#
+# latex_gen class can be used in your algorithm
+CNTJob DOC 0
+CNTJob FDOC S algo_example.tex
+
+#---------- output ps file for histoManager plots ----------#
+CNTJob FPS S algo_example.ps
+
+#---------- open a TBrowser at the end of the run ----------#
+CNTJob BROWSER I 0
+
+#---------- Algorithm parameters ----------#
+petAnalysis LAN S c++
+
